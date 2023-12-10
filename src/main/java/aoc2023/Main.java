@@ -11,10 +11,8 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            //Day1.printSumOfCalibrationValues(
-            //    new File("/home/arenard/personal/aoc2023/src/main/resources/d1_input.txt"));
-            Day1.printSumOfCalibrationValues(
-                new File("/home/arenard/personal/aoc2023/src/main/resources/d1_input.txt"));
+            Day2.printSumOfIDs(
+                new File("/home/arenard/personal/aoc2023/src/main/resources/d2_input.txt"));
         } catch (Exception e) {
             System.err.println(e);
         }
