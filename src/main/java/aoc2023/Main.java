@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            Day2.printSumOfIDs(
+            Day2.printSumOfPowers(
                 new File("/home/arenard/personal/aoc2023/src/main/resources/d2_input.txt"));
         } catch (Exception e) {
             System.err.println(e);

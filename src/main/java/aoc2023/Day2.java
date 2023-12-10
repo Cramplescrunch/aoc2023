@@ -43,6 +43,14 @@ public class Day2 {
         return true;
     }
 
+    private static int getSetPower(Map<String, Integer> map) {
+        int result = 1;
+        for (Integer count : map.values()) {
+            result *= count;
+        }
+        return result;
+    }
+
     private static int getGameIDIfPossible(final String line) {
         try {
             final String game = line.split(":")[1];
@@ -108,7 +116,48 @@ public class Day2 {
         } catch (NumberFormatException e) {
             return 0;
         }
+    }
+
+    private static int getGameMinimumSetPower(final String line) {
+        final String game = line.split(":")[1];
+        final String[] sets = game.split(";");
+        Map<String, Integer> countMap = initCountMap();
+        int count;
+        String color;
+        String[] colorCountSubSets;
+        String[] colorCountSplit;
+    
+        for(String set : sets) {
+            colorCountSubSets = set.split(",");
+            for(String colorCount : colorCountSubSets) {
+                colorCountSplit = colorCount.split(" ");
+                count = Integer.parseInt(colorCountSplit[1]);
+                color = colorCountSplit[2];
         
+                switch (color) {
+                    case "red":
+                        if(count > countMap.get(color)) {
+                            countMap.put(color, count);
+                        }
+                        break;
+                    case "green":
+                        if(count > countMap.get(color)) {
+                            countMap.put(color, count);
+                        }
+                        break;
+                    case "blue":
+                        if(count > countMap.get(color)) {
+                            countMap.put(color, count);
+                        }
+                        break;    
+                    default:
+                        break;
+                }
+
+            }
+        }
+
+        return getSetPower(countMap);
     }
 
     public static void printSumOfIDs(final File file) throws FileNotFoundException, IOException {
@@ -117,6 +166,17 @@ public class Day2 {
             long sum=0;
             while((line = br.readLine()) != null) {
                 sum += Day2.getGameIDIfPossible(line);
+            }
+            System.out.println(sum);
+        }
+    }
+
+    public static void printSumOfPowers(final File file) throws FileNotFoundException, IOException {
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            long sum=0;
+            while((line = br.readLine()) != null) {
+                sum += Day2.getGameMinimumSetPower(line);
             }
             System.out.println(sum);
         }
